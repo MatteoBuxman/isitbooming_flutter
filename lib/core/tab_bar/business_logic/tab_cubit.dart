@@ -10,7 +10,7 @@ enum SelectedTab {
 
 class TabCubit extends Cubit<SelectedTab> {
   //Set the initial state of the app to be the feed page
-  TabCubit() : super(SelectedTab.feed);
+  TabCubit() : super(SelectedTab.dashboard);
 
   void setTab(int newTabIndex) {
     switch (newTabIndex) {

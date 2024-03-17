@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sandbox/core/feed/feed_controller.dart';
 import 'package:sandbox/features/feed/business_logic/boom_feed_cubit.dart';
-import 'package:sandbox/features/feed/business_logic/states/feed_state.dart';
-import 'package:sandbox/features/feed/presentation/widgets/feed_item.dart';
-import 'package:sandbox/features/feed/presentation/widgets/isitbooming_heading.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sandbox/features/feed/presentation/widgets/feed_scroll.dart';
 
 class Feed extends StatefulWidget {
   const Feed({super.key});
@@ -14,16 +12,13 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
-  final loader = const SpinKitFoldingCube(
-    color: Colors.white,
-  );
 
   late BoomFeedCubit _boomFeedCubit;
 
   @override
   void initState() {
     //Get a reference to the Cubit so it can be referred to safely in the onDestroy function.
-    _boomFeedCubit = BlocProvider.of<BoomFeedCubit>(context);
+    _boomFeedCubit = BlocProvider.of<FeedController>(context) as BoomFeedCubit;
 
     //Start playong the boom that was playing when the user left the feed page. Only done if the feed_cubit is
     //already initialized meaning that it was a user navigation to another page that caused the pausing of
@@ -37,29 +32,7 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BoomFeedCubit, FeedState>(
-      builder: (context, data) => Stack(
-        children: [
-          data is LoadedFeedState
-              ? PageView.builder(
-                  controller:
-                      PageController(initialPage: _boomFeedCubit.currentPlayingBoomIndex),
-                  itemCount: data.feed.length,
-                  onPageChanged: (newIndex) =>
-                      _boomFeedCubit.reportScroll(newIndex),
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) => FeedItem(data.feed[index]),
-                )
-              : Container(
-                  color: Colors.black,
-                  child: Center(
-                    child: loader,
-                  ),
-                ),
-          const IsItBoomingHeading(),
-        ],
-      ),
-    );
+    return FeedScroll(controllingCubit: _boomFeedCubit,);
   }
 
   @override
@@ -67,7 +40,7 @@ class _FeedState extends State<Feed> {
     print('Feed page disposed');
 
     //Pause the currently playing video player
-    _boomFeedCubit.pauseCurrentPlayer();
+    _boomFeedCubit.reportUserClickAway();
 
     super.dispose();
   }

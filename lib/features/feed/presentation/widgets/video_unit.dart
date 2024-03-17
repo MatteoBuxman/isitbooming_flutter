@@ -37,7 +37,7 @@ class _VideoUnitState extends State<VideoUnit> {
                   borderRadius: BorderRadius.circular(10),
                   child: VideoPlayer(widget._controller)),
             )
-          : Container(),
+          :  Container(),
     );
   }
 }

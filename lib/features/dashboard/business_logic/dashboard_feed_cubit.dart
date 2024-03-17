@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:sandbox/core/feed/feed_controller.dart';
 import 'package:sandbox/features/feed/business_logic/states/feed_state.dart';
 import 'package:sandbox/features/feed/data/models/boom.dart';
@@ -7,7 +6,7 @@ import 'package:sandbox/features/feed/data/models/boom_feed_unit.dart';
 import 'package:sandbox/features/feed/data/repository/get_feed_booms_repository.dart';
 
 //The controller which plays, pauses, and disposes of video controllers on a user swipe.
-class BoomFeedCubit extends FeedController {
+class DashboardFeedCubit extends FeedController {
   final feedBoomRepository = GetFeedBoomsRepository();
 
   //The working list of all BoomFeedUnits
@@ -21,13 +20,17 @@ class BoomFeedCubit extends FeedController {
   //This is set to the index of the first boom in the final block within the feedList
   int indexOfEdgeBetweenFinalAndPenultimateBlocksOfVideos = 0;
 
+  //Index of the current playing boom in the feed
+  @override
+  int currentPlayingBoomIndex = 0;
+
   //The index of the current in focus BoomFeedUnit
   int currentFocused = 0;
 
   //Variable to track whether this Cubit has been initialized.
   bool isInitialized = false;
 
-  BoomFeedCubit() {
+  DashboardFeedCubit()  {
     feedBoomRepository.requestFeedUnit().then(((value) {
       //Check if the request was successful
       if (value.fetchStatus == FetchStatus.error) {
@@ -80,6 +83,12 @@ class BoomFeedCubit extends FeedController {
     currentPlayingBoom.controller.play();
   }
 
+  //When the user clicks off of the feed page, report the last playing boom index so playback can resume from that same spot if the user navigates back to the feed page.
+  void reportUserClickAway() {
+    pauseCurrentPlayer();
+    emit(LoadedFeedState(feedList, currentPlayingBoomIndex));
+  }
+
   @override
   void reportScroll(int newIndex) {
     //Forward scroll
@@ -107,12 +116,6 @@ class BoomFeedCubit extends FeedController {
       backwardScroll(newIndex);
       currentPlayingBoomIndex--;
     }
-  }
-
-  //When the user clicks off of the feed page, report the last playing boom index so playback can resume from that same spot if the user navigates back to the feed page.
-  void reportUserClickAway() {
-    pauseCurrentPlayer();
-    emit(LoadedFeedState(feedList, currentPlayingBoomIndex));
   }
 
   //Handle a forward scroll

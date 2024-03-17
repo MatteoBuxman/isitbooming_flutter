@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sandbox/core/feed/feed_controller.dart';
 import 'package:sandbox/core/tab_bar/business_logic/tab_cubit.dart';
 import 'package:sandbox/features/dashboard/presentation/screens/dashboard.dart';
 import 'package:sandbox/features/feed/business_logic/boom_feed_cubit.dart';
@@ -104,7 +105,7 @@ class BoomNavigationBar extends StatelessWidget {
         ),
         body: [
           //Using value to persist the BLOC when the user goes to a different tab. It seems wasteful to reinitialize all the video players.
-          BlocProvider<BoomFeedCubit>.value(value: _boomFeedCubit, child: const Feed(),),
+          BlocProvider<FeedController>.value(value: _boomFeedCubit, child: const Feed(),),
           const Boomscape(),
           const NewBoom(),
           const Explore(),

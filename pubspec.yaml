@@ -41,7 +41,12 @@ dependencies:
   loading_indicator: ^3.1.1
   flutter_bloc: ^8.1.4
   flutter_spinkit: ^5.2.0
-  google_maps_flutter: ^2.6.0
+  mapbox_maps_flutter: ^1.0.0
+  material_segmented_control: ^5.0.0
+  segmented_button_slide: ^1.0.4
+  geolocator: ^11.0.0
+  contained_tab_bar_view: ^0.8.0
+  dio: ^5.4.1
 
 dev_dependencies:
   flutter_test:

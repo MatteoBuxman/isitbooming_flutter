@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sandbox/core/feed/feed_controller.dart';
 import 'package:sandbox/features/feed/data/models/boom.dart';
 import 'package:sandbox/features/feed/presentation/screens/venue_dashboard_page.dart';
-import 'package:sandbox/features/feed/business_logic/boom_feed_cubit.dart';
 import '../screens/foreign_user_dashboard.dart';
 import 'package:sandbox/features/feed/presentation/widgets/InteractionIcons/interactive_boom_button.dart';
 
@@ -16,11 +16,11 @@ class BoomInteractions extends StatefulWidget {
 
 class _BoomInteractionsState extends State<BoomInteractions> {
   //Get a reference to the current BoomFeedBloc, to be able to pause the current boom when navigating to another route.
-  late BoomFeedCubit _boomFeedCubit;
+  late FeedController _boomFeedCubit;
 
   @override
   void initState() {
-    _boomFeedCubit = BlocProvider.of<BoomFeedCubit>(context);
+    _boomFeedCubit = BlocProvider.of<FeedController>(context);
     super.initState();
   }
 
