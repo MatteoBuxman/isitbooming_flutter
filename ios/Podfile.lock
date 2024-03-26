@@ -1,5 +1,7 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_isolate (0.0.1):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - mapbox_maps_flutter (1.0.0):
@@ -22,6 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_isolate (from `.symlinks/plugins/flutter_isolate/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - mapbox_maps_flutter (from `.symlinks/plugins/mapbox_maps_flutter/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -37,6 +40,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_isolate:
+    :path: ".symlinks/plugins/flutter_isolate/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   mapbox_maps_flutter:
@@ -48,6 +53,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_isolate: 0edf5081826d071adf21759d1eb10ff5c24503b5
   geolocator_apple: 9157311f654584b9bb72686c55fc02a97b73f461
   mapbox_maps_flutter: 7954cf84b3973ec17d49b483f31baad6abde6c48
   MapboxCommon: f40f1e8c8f3ee8e2bee3b15437812ab114722420

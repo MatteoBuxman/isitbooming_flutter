@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sandbox/core/feed/feed_controller.dart';
-
 import 'package:sandbox/features/dashboard/business_logic/dashboard_feed_cubit.dart';
 import 'package:sandbox/features/dashboard/data/models/boom_thumbnail.dart';
 import 'package:sandbox/features/feed/presentation/widgets/feed_scroll.dart';
@@ -17,45 +18,42 @@ class BoomThumbnailWidget extends StatefulWidget {
 
 class _BoomThumbnailWidgetState extends State<BoomThumbnailWidget> {
   void _showFullscreenVideoBottomSheet(BuildContext context) {
-    DashboardFeedCubit feedController = DashboardFeedCubit();
+    DashboardFeedCubit controllingCubit = DashboardFeedCubit();
 
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.black,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async {
-            // Close the full-screen video player when the back button is pressed
-            Navigator.pop(context);
-            feedController.reportUserClickAway();
-            return false;
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      // Close the full-screen video player when the close icon is pressed
-                      Navigator.pop(context);
-                      
-                    },
-                  ),
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return Scaffold(
+          backgroundColor: Colors.black,
+          body: Scaffold(
+            backgroundColor: Colors.black,
+            body: Center(
+              child: SafeArea(
+                child: Stack(
+                  children: [
+                    BlocProvider<FeedController>.value(
+                      value: controllingCubit,
+                      child: FeedScroll(controllingCubit: controllingCubit),
+                    ),
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: GestureDetector(
+                        onTap: () {
+                          controllingCubit.close();
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.close_rounded,
+                          color: Colors.white,
+                          weight: 20,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                BlocProvider<FeedController>(
-                    create: (context) => feedController,
-                    child: Expanded(
-                        child: FeedScroll(controllingCubit: feedController))),
-              ],
+              ),
             ),
-          ),
-        );
-      },
-    );
+          ));
+    }));
   }
 
   @override

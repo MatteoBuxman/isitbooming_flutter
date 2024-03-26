@@ -1,14 +1,20 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:sandbox/core/feed/feed_controller.dart';
+import 'package:sandbox/core/workers/video_worker.dart';
 import 'package:sandbox/features/feed/business_logic/states/feed_state.dart';
 import 'package:sandbox/features/feed/data/models/boom.dart';
 import 'package:sandbox/features/feed/data/models/boom_feed_unit.dart';
 import 'package:sandbox/features/feed/data/repository/get_feed_booms_repository.dart';
 
+const bool debug = true;
+
 //The controller which plays, pauses, and disposes of video controllers on a user swipe.
 class BoomFeedCubit extends FeedController {
   final feedBoomRepository = GetFeedBoomsRepository();
+
+  late VideoWorker videoInitializer;
 
   //The working list of all BoomFeedUnits
   final feedUnitList = <BoomFeedUnit>[];
@@ -27,8 +33,12 @@ class BoomFeedCubit extends FeedController {
   //Variable to track whether this Cubit has been initialized.
   bool isInitialized = false;
 
-  BoomFeedCubit() {
-    feedBoomRepository.requestFeedUnit().then(((value) {
+  BoomFeedCubit() : super() {
+    VideoWorker.start().then((value) {
+      videoInitializer = value;
+
+      return feedBoomRepository.requestFeedUnit();
+    }).then(((value) {
       //Check if the request was successful
       if (value.fetchStatus == FetchStatus.error) {
         throw Exception('The initial BoomFeedUnit could not be fetched.');
@@ -41,13 +51,13 @@ class BoomFeedCubit extends FeedController {
       feedList.addAll(value.booms);
 
       //Initialize the first couple of videos min(initialUnit.size, 3), and pass in the function to call once these initial booms have been initialized.
-      return initializeInitialBoomsInFeed(value,
-          () => emit(LoadedFeedState(feedList, currentPlayingBoomIndex)));
+      return initializeInitialBoomsInFeed(value);
     })).then((_) {
+      //Emit state to the presentation layer
+      //emit(LoadedFeedState(feedList, 0));
       isInitialized = true;
-
-      //Emit loaded state to the presentation layer
-      emit(LoadedFeedState(feedList, 0));
+      //Play the intial video
+      //feedList[0].controller.play();
     }).catchError((error) {
       print(error);
     });
@@ -68,6 +78,18 @@ class BoomFeedCubit extends FeedController {
 
   //Return the current playing boom
   Boom get currentPlayingBoom => feedList[currentPlayingBoomIndex];
+
+  @override
+  Future<void> close() {
+    disposeOfAllPlayers();
+    return super.close();
+  }
+
+  void disposeOfAllPlayers() {
+    for (var boom in feedList) {
+      boom.controller.dispose();
+    }
+  }
 
   @override
   void pauseCurrentPlayer() {
@@ -161,25 +183,31 @@ class BoomFeedCubit extends FeedController {
   }
 
   //Called by the constructor to inititialize the first couple of booms and play the first one
-  Future<void> initializeInitialBoomsInFeed(
-      BoomFeedUnit initialUnit, void Function() callback) async {
+  Future<void> initializeInitialBoomsInFeed(BoomFeedUnit initialUnit) async {
     int amountOfBoomsToInitialize = min(initialUnit.booms.length, 3);
 
-    for (var i = 0; i < amountOfBoomsToInitialize; i++) {
-      switch (i) {
-        case 0:
-          final controller = feedList[i].controller;
-          controller.setLooping(true);
-          controller.initialize().then((value) {
-            //controller.play().then((value) => callback());
-            callback();
-          });
-        default:
-          final controller = feedList[i].controller;
-          controller.setLooping(true);
-          controller.initialize();
+    //Make a list of the initial URLs to initialize video controllers for
+    final boomsToInitialize = feedList
+        .take(amountOfBoomsToInitialize)
+        .map((boom) => boom.videoURL)
+        .toList();
+
+    final returnedControllers =
+        videoInitializer.createInitializedControllers(boomsToInitialize);
+
+    int count = 0;
+    returnedControllers.listen((initializedController) async {
+      await initializedController.initialize();
+      if (count == 0) {
+        feedList[count].controller = initializedController;
+        if (!debug) {
+          initializedController.play();
+        }
+        emit(LoadedFeedState(feedList, 0));
       }
-    }
+      feedList[count].controller = initializedController;
+      count++;
+    });
   }
 
   void _stopControllerAtIndex(int index) {
@@ -227,12 +255,24 @@ class BoomFeedCubit extends FeedController {
     }
   }
 
-  Future _initializeControllerAtIndex(int index) async {
+  Future<void> _initializeControllerAtIndex(int index) async {
     if (feedList.length > index && index >= 0) {
-      /// Initialize controller at the correct index
-      feedList[index].initialize();
+      Completer<void> completer = Completer();
 
-      print('initialized $index');
+      /// Initialize controller at the correct index
+      final returnedControllers = videoInitializer
+          .createInitializedControllers([feedList[index].videoURL]);
+
+      returnedControllers.listen((initializedController) {
+        //Eventually this initialization should be done on the isolate. But I can't get that to work.
+        initializedController.initialize();
+
+        feedList[index].controller = initializedController;
+      }).onDone(() {
+        completer.complete();
+        print('initialized $index');
+      });
+      return completer.future;
     }
   }
 }

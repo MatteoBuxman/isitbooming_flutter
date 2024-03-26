@@ -9,14 +9,16 @@ import 'package:sandbox/features/boomscape/presentation/screens/boomscape.dart';
 import 'package:sandbox/features/newboom/presentation/screens/new_boom.dart';
 import 'package:sandbox/features/explore/presentation/screens/explore.dart';
 
-class BoomNavigationBar extends StatelessWidget {
-
-  //Instantiate BLOCS here so they persist when a user switches away from the screen they are used on.
-  //This seems more efficient for cases like the BoomFeedCubit which shouldn't need to reload all controller
-  //just because a user switched away from the screen.
-  final _boomFeedCubit = BoomFeedCubit();
-
+class BoomNavigationBar extends StatefulWidget {
   BoomNavigationBar({super.key});
+
+  @override
+  State<BoomNavigationBar> createState() => _BoomNavigationBarState();
+}
+
+class _BoomNavigationBarState extends State<BoomNavigationBar> {
+  //Instantiate BLOCS here so they persist when a user switches away from the screen they are used on.
+  final _boomFeedCubit = BoomFeedCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,10 @@ class BoomNavigationBar extends StatelessWidget {
         ),
         body: [
           //Using value to persist the BLOC when the user goes to a different tab. It seems wasteful to reinitialize all the video players.
-          BlocProvider<FeedController>.value(value: _boomFeedCubit, child: const Feed(),),
+          BlocProvider<FeedController>.value(
+            value: _boomFeedCubit,
+            child: const Feed(),
+          ),
           const Boomscape(),
           const NewBoom(),
           const Explore(),
@@ -113,5 +118,11 @@ class BoomNavigationBar extends StatelessWidget {
         ][state.index],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _boomFeedCubit.close();
+    super.dispose();
   }
 }
