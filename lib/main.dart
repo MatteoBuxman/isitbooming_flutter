@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       create: (_) => TabCubit(),
       child: MaterialApp(
         title: 'IsItBooming',
-        home: Theme(data: ThemeData(), child: BoomNavigationBar()),
+        home: Theme(data: ThemeData(), child: const BoomNavigationBar()),
       ),
     );
   }

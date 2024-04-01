@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:sandbox/features/dashboard/presentation/widgets/current_event_unit.dart';
+import 'package:sandbox/features/dashboard/presentation/widgets/events/widgets/current_event_unit.dart';
+import 'package:sandbox/features/dashboard/presentation/widgets/events/widgets/past_event_unit.dart';
 
 class MyEventsTab extends StatefulWidget {
   const MyEventsTab({super.key});
@@ -10,10 +12,14 @@ class MyEventsTab extends StatefulWidget {
 }
 
 class _MyEventsTabState extends State<MyEventsTab> {
-  bool isPrivate = true;
-  bool isTickets = false;
+  //Mock event list for development
+  List<int> currentEvents = [0];
+  List<int> pastEvents = [0, 1, 2, 3, 4, 5];
 
   void _openCreateNewEventSheet() {
+    bool isPrivate = true;
+    bool isTickets = false;
+
     showBarModalBottomSheet(
         context: context,
         builder: (context) {
@@ -177,12 +183,14 @@ class _MyEventsTabState extends State<MyEventsTab> {
                 const SizedBox(height: 32.0),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) {
-                          return const Scaffold(
-                            body: Center(child: Text('Select location'),),
-                          );
-                        }));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Scaffold(
+                        body: Center(
+                          child: Text('Select location'),
+                        ),
+                      );
+                    }));
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.blue,
@@ -207,31 +215,46 @@ class _MyEventsTabState extends State<MyEventsTab> {
 
   @override
   Widget build(BuildContext context) {
+    //Add 2 to account for the headings
+    final eventListLength = currentEvents.length + pastEvents.length + (pastEvents.isEmpty ? 1 : 2);
+
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          TextButton(
-              onPressed: _openCreateNewEventSheet,
-              child: const Text(
-                'Create new event',
-                style: TextStyle(color: Color.fromRGBO(99, 32, 238, 1.0)),
-              )),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: Text(
-                  "Current Events",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextButton(onPressed: _openCreateNewEventSheet, child: const Text("Create new event", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),)),
+            Expanded(
+              child: ListView.separated(
+                itemCount: eventListLength,
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 8,
                 ),
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Current Events",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    );
+                  } else if (index <= currentEvents.length) {
+                    return const CurrentEventUnit();
+                  } else if (index == currentEvents.length + 1) {
+                    return const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Past Events",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    );
+                  } else {
+                    return const PastEventUnit();
+                  }
+                },
               ),
-              CurrentEventUnit(),
-            ],
-          )
-        ],
-      ),
-    );
+            ),
+          ],
+        ));
   }
 }

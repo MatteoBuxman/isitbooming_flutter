@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sandbox/core/feed/feed_controller.dart';
 import 'package:sandbox/features/dashboard/business_logic/dashboard_feed_cubit.dart';
-import 'package:sandbox/features/dashboard/data/models/boom_thumbnail.dart';
+import 'package:sandbox/features/feed/data/models/boom.dart';
 import 'package:sandbox/features/feed/presentation/widgets/feed_scroll.dart';
 
 class BoomThumbnailWidget extends StatefulWidget {
-  final BoomThumbnail thumbnail;
+  final Boom boom;
 
-  const BoomThumbnailWidget(this.thumbnail, {super.key});
+  const BoomThumbnailWidget(this.boom, {super.key});
 
   @override
   State<BoomThumbnailWidget> createState() => _BoomThumbnailWidgetState();
@@ -61,12 +60,12 @@ class _BoomThumbnailWidgetState extends State<BoomThumbnailWidget> {
     return GestureDetector(
       onTap: () {
         _showFullscreenVideoBottomSheet(context);
-        print('Clicked on ${widget.thumbnail.furtherInformation}');
       },
-      child: Image.network(
-        widget.thumbnail.thumbnailLink.toString(),
+      child: CachedNetworkImage(
         fit: BoxFit.cover,
-      ),
+        imageUrl: widget.boom.thumbnailURL,
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+     ),
     );
   }
 }

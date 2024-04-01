@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:sandbox/features/dashboard/presentation/widgets/my_booms_tab.dart';
-import 'package:sandbox/features/dashboard/presentation/widgets/my_events_tab.dart';
-import 'package:sandbox/features/dashboard/presentation/widgets/my_location_tab.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sandbox/features/dashboard/business_logic/dashboard_boom_grid.dart';
+import 'package:sandbox/features/dashboard/presentation/widgets/booms/my_booms_tab.dart';
+import 'package:sandbox/features/dashboard/presentation/widgets/events/my_events_tab.dart';
+import 'package:sandbox/features/dashboard/presentation/widgets/locations/my_location_tab.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -13,6 +15,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  //The cubit for the user's boom grid
+  final _userBoomGrid = DashboardBoomGridCubit();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -20,10 +25,10 @@ class _DashboardState extends State<Dashboard> {
       child: Center(
         child: SafeArea(
           child: Column(
-            children: const [
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
+                children: const [
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 15, 10),
                     child: Icon(
@@ -37,7 +42,7 @@ class _DashboardState extends State<Dashboard> {
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.face,
                       size: 60,
@@ -96,7 +101,7 @@ class _DashboardState extends State<Dashboard> {
                 padding: EdgeInsets.fromLTRB(35, 0, 35, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Column(
                       children: [
                         Text(
@@ -139,7 +144,7 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 ),
               ),
-              TabBar(tabs: [
+              TabBar(tabs: const [
                 Tab(
                   text: 'My Booms',
                 ),
@@ -152,7 +157,8 @@ class _DashboardState extends State<Dashboard> {
               ]),
               Expanded(
                   child: TabBarView(children: [
-                MyBoomsTab(),
+                //I use .value because the default BlocProvider destroys itself whenever all listeners are destroyed, this is an issue in the tab system where the Booms Tab component lives. I rather choose to only destroy it when the user navigates away from the dashboard page.
+                BlocProvider.value(value: _userBoomGrid, child: MyBoomsTab()),
                 MyEventsTab(),
                 MyLocationsTab()
               ]))
@@ -161,5 +167,11 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _userBoomGrid.close();
+    super.dispose();
   }
 }

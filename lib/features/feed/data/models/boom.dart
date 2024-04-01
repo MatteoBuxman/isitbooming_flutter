@@ -11,6 +11,7 @@ class Boom {
   final bool isSaved;
   final bool isHyped;
   final String videoURL;
+  final String thumbnailURL;
 
   //The video controller for the boom
   VideoPlayerController controller;
@@ -24,6 +25,7 @@ class Boom {
     required this.location,
     required this.isSaved,
     required this.isHyped,
+    required this.thumbnailURL,
     required this.videoURL,
   }) : controller = VideoPlayerController.networkUrl(Uri.parse(videoURL));
 
@@ -37,11 +39,11 @@ class Boom {
       location: Location.fromJson(json['location']),
       isSaved: json['isSaved'] == 'True',
       isHyped: json['isHyped'] == 'True',
+      thumbnailURL: json['thumbnailURL'],
       videoURL: json['videoURL'],
     );
   }
 
-  //Reinitialize a boom that has previously been disposed
   void initialize() {
     controller = VideoPlayerController.networkUrl(Uri.parse(videoURL));
     controller.initialize();

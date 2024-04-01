@@ -1,0 +1,151 @@
+{
+  "requestStatus": "Success",
+  "errorCode": 0,
+  "requesterUUID": "rjksjbffhfeertgsnjnj34494-038s",
+  "booms": [
+    {
+      "boomID": "eebcjbjehr4efbdwsbhwsbh3452db",
+      "postTime": "07/03/2024 19:43",
+      "userUUID": "rrugbruei4iehsowo43-0892",
+      "username": "Buxxmoney",
+      "userProfilePhotoURL": "'https://firebase.storage/ejcjdjndjd-wnw89'",
+      "location": {
+        "name": "The Tin Roof",
+        "isTemporary": "false",
+        "locationUUID": "rgrufn3i3ifhwijoj2niwniwd"
+      },
+      "isSaved": "True",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fandy-holmes-rlHEHymgAD8-unsplash.jpg?alt=media&token=b6ee95f7-44f5-4720-866b-959107af08e3",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FW9UpzjCEs0kMXLcP7Oa2%2FWhatsApp%20Video%202024-01-04%20at%2020.54.51.mp4?alt=media&token=e0cd3f4e-cf7a-4b4c-be75-639b8cb24d56"
+    },
+    {
+      "boomID": "ksdjfh4jkshdf77sdfhsdf4545",
+      "postTime": "06/03/2024 15:22",
+      "userUUID": "dfjkh45jk34jk45jk34jk34j",
+      "username": "TravellingTom",
+      "userProfilePhotoURL": "'https://firebase.storage/jkdfhj845jkdf'",
+      "location": {
+        "name": "Howl at the Moon",
+        "isTemporary": "false",
+        "locationUUID": "jkdfhj45jkdfhj45jkdfh4j5k"
+      },
+      "isSaved": "False",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fbrian-gomes-dX8Rt1sdIWw-unsplash.jpg?alt=media&token=533c0509-2397-4b17-a6e5-fc1cea2189a4",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FDiP9qjjsBK3dYNKPuFn1%2Fv12044gd0000cn9m6anog65kgd8utar0.mp4?alt=media&token=ad59534b-3dc2-42c0-813a-3ecb30146429"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf1",
+      "postTime": "05/03/2024 09:15",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "FoodieForLife",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Tequila Mockingbird",
+        "isTemporary": "false",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "True",
+      "isHyped": "False",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fbrian-gomes-in-pd-MQ0E0-unsplash.jpg?alt=media&token=92bad3e7-1202-46ef-bdbc-fe4cf56ad110",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv09044g40000cnhgfjvog65t04uqcg0g.mp4?alt=media&token=ed6c7b38-1740-41da-843d-f9dc852323da"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf2",
+      "postTime": "04/03/2024 22:40",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "ConcertCrazy",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "The Roxy",
+        "isTemporary": "true",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "False",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fbrian-gomes-n_qeUPl4QCM-unsplash.jpg?alt=media&token=2d91d8f7-4518-4805-b402-56548e93a560",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv09044g40000cniacmnog65jmp6j8ofg.mp4?alt=media&token=95ebb91e-7e05-4521-b741-a04712cc21af"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf3",
+      "postTime": "03/03/2024 18:15",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "ArtLover",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Whiskey River",
+        "isTemporary": "false",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "True",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fimaad-whd-YEiqu8XitRI-unsplash.jpg?alt=media&token=66b5ad84-1962-40ea-a63e-933cc6b23741",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv0f044gc0000cnbvr6nog65gdnkfmdk0.mp4?alt=media&token=820a32cb-93c9-441b-898b-56c9ce79872f"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf4",
+      "postTime": "02/03/2024 11:30",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "OutdoorAdventurer",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Club Chaos",
+        "isTemporary": "false",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "False",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fleandro-parenti-PN0TxSSahbc-unsplash.jpg?alt=media&token=28b5c5c5-32cf-488b-91ae-c467250bee32",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv0f044gc0000cnibr4vog65pte55rn4g.mp4?alt=media&token=6a6b0886-d79a-45a7-86a1-050ece824838"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf5",
+      "postTime": "01/03/2024 07:45",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "FitnessFreak",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Margaritaville",
+        "isTemporary": "false",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "True",
+      "isHyped": "False",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fmika-baumeister-w_A3OUWQ0Nc-unsplash.jpg?alt=media&token=9701d4b2-206f-4553-b624-fc5ff650a9a5",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv12044gd0000cmo2lhnog65ruvvsien0.mp4?alt=media&token=84e35d5f-e0a8-47c8-96ef-4b509bc632e4"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf6",
+      "postTime": "28/02/2024 20:10",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "MovieBuff",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Splash Bar & Grill",
+        "isTemporary": "false",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "False",
+      "isHyped": "True",
+      "thumbnailURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FI2yH3t3L7krNS0TSkVuY%2Fwilliam-manuel-son-NCMAGAibxD4-unsplash.jpg?alt=media&token=d3976597-5225-4c1d-9616-b2aa0b20f2bf",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv12044gd0000cnfs7avog65ip6nh5h60.mp4?alt=media&token=1c211024-1480-47ee-adf7-ec3574a32f11"
+    },
+    {
+      "boomID": "sdfkjh45kdfhj45kdfhj45kdf7",
+      "postTime": "27/02/2024 14:25",
+      "userUUID": "jk34jk34jk34jk34jk34jk34j",
+      "username": "TechGeek",
+      "userProfilePhotoURL": "'https://firebase.storage/jk34jk34jk34jk34'",
+      "location": {
+        "name": "Bottomless Brunch",
+        "isTemporary": "true",
+        "locationUUID": "jk34jk34jk34jk34jk34jk34j"
+      },
+      "isSaved": "True",
+      "isHyped": "False",
+      "thumbnailURL": "https://dummyimage.com/350x9:16/",
+      "videoURL": "https://firebasestorage.googleapis.com/v0/b/lesimulatte.appspot.com/o/user_enquiry_files%2FAhi4WPDD9fVk5EARttBd%2Fv12044gd0000cni9r87og65jkdhlbs6g.mp4?alt=media&token=34fd2e3f-4ae9-47d9-8ee4-3e9f1e7c4de5"
+    }
+  ]
+}

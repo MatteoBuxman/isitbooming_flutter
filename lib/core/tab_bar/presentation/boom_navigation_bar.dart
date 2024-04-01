@@ -10,7 +10,7 @@ import 'package:sandbox/features/newboom/presentation/screens/new_boom.dart';
 import 'package:sandbox/features/explore/presentation/screens/explore.dart';
 
 class BoomNavigationBar extends StatefulWidget {
-  BoomNavigationBar({super.key});
+  const BoomNavigationBar({super.key});
 
   @override
   State<BoomNavigationBar> createState() => _BoomNavigationBarState();
