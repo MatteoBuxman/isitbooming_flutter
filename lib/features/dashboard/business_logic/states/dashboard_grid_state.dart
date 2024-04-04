@@ -1,4 +1,4 @@
-import 'package:sandbox/features/dashboard/data/errors/boom_list_fetch_exception.dart';
+import 'package:sandbox/features/dashboard/data/exceptions/boom_list_fetch_exception.dart';
 import 'package:sandbox/features/feed/data/models/boom.dart';
 
 class DashboardGridState {}

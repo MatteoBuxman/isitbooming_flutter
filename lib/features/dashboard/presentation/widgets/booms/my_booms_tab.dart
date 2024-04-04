@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sandbox/features/dashboard/business_logic/dashboard_boom_grid.dart';
+import 'package:sandbox/features/dashboard/business_logic/dashboard_boom_grid_cubit.dart';
 import 'package:sandbox/features/dashboard/business_logic/states/dashboard_grid_state.dart';
 import 'package:sandbox/features/dashboard/presentation/widgets/booms/widgets/boom_thumbnail.dart';
 
@@ -33,8 +33,13 @@ class _MyBoomsTabState extends State<MyBoomsTab> {
       } else if (state is LoadingDashboardGridState) {
         return const Text("Loading your booms");
       } else if (state is ErrorDashboardGridState) {
-        return Text(
-            state.error.error);
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(state.error.error),
+            Text('Error code: ${state.error.errorCode ?? 'No error code supplied.'}')
+          ],
+        );
       } else {
         //This should never run
         return const Text("An unknown error occured");

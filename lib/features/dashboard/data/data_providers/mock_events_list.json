@@ -1,0 +1,89 @@
+{
+    "requestStatus": "Success",
+    "errorCode": 0,
+    "requesterUUID": "rjksjbffhfeertgsnjnj34494-038s",
+    "previousEvents": [
+      {
+        "eventName": "Tech Conference 2023",
+        "eventDescription": "Attend workshops and keynotes by industry experts in the tech field.",
+        "hasPassed": true,
+        "location": {
+          "name": "Moscone Center",
+          "isTemporary": false,
+          "locationUUID": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5"
+        },
+        "startTime": "2023-05-10T09:00:00",
+        "endTime": "2023-05-12T18:00:00",
+        "furtherInformationLinks": [
+          "/events/tech-conference-2023/schedule",
+          "/events/tech-conference-2023/speakers"
+        ]
+      },
+      {
+        "eventName": "Food & Wine Festival",
+        "eventDescription": "Savor culinary delights and exquisite wines from around the world.",
+        "hasPassed": true,
+        "location": {
+          "name": "Napa Valley",
+          "isTemporary": true,
+          "locationUUID": "p9q8r7s6-t5u4-v3w2-x1y0-z9a8b7c6d5"
+        },
+        "startTime": "2023-04-05T12:00:00",
+        "endTime": "2023-04-08T20:00:00",
+        "furtherInformationLinks": [
+          "/events/food-wine-festival/vendors",
+          "/events/food-wine-festival/tickets"
+        ]
+      },
+      {
+        "eventName": "Book Fair",
+        "eventDescription": "Explore a wide collection of books and meet famous authors.",
+        "hasPassed": true,
+        "location": {
+          "name": "Convention Center",
+          "isTemporary": false,
+          "locationUUID": "e9f8g7h6-i5j4-k3l2-m1n0-o9p8q7r6s5"
+        },
+        "startTime": "2023-03-15T10:00:00",
+        "endTime": "2023-03-18T18:00:00",
+        "furtherInformationLinks": [
+          "/events/book-fair/schedule",
+          "/events/book-fair/authors"
+        ]
+      }
+    ],
+    "currentEvents": [
+      {
+        "eventName": "Summer Music Festival",
+        "eventDescription": "Join us for a weekend of live music performances by renowned artists.",
+        "hasPassed": false,
+        "location": {
+          "name": "Central Park",
+          "isTemporary": true,
+          "locationUUID": "t7u6v5w4-x3y2-z1a0-b9c8-d7e6f5g4h3"
+        },
+        "startTime": "2023-07-15T18:00:00",
+        "endTime": "2023-07-17T23:00:00",
+        "furtherInformationLinks": [
+          "/events/summer-music-festival/lineup",
+          "/events/summer-music-festival/tickets"
+        ]
+      },
+      {
+        "eventName": "Charity Fundraiser Gala",
+        "eventDescription": "Support a noble cause and enjoy a night of entertainment and fine dining.",
+        "hasPassed": false,
+        "location": {
+          "name": "Le Grand Palais",
+          "isTemporary": false,
+          "locationUUID": "i1j2k3l4-m5n6-o7p8-q9r0-s1t2u3v4w5"
+        },
+        "startTime": "2023-11-15T18:30:00",
+        "endTime": "2023-11-15T23:30:00",
+        "furtherInformationLinks": [
+          "/events/charity-gala/cause",
+          "/events/charity-gala/tickets"
+        ]
+      }
+    ]
+  }

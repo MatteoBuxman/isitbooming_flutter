@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/features/dashboard/data/models/event.dart';
 
 class PastEventUnit extends StatefulWidget {
-  const PastEventUnit({super.key});
+  final Event event;
+
+  const PastEventUnit({super.key, required this.event});
 
   @override
   State<PastEventUnit> createState() => _PastEventUnitState();
@@ -29,7 +32,7 @@ class _PastEventUnitState extends State<PastEventUnit> {
   }
 
   //Handle a click on the actual event card
-  void _handleEventClick(){
+  void _handleEventClick() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return const Scaffold(
         body: Center(
@@ -57,42 +60,41 @@ class _PastEventUnitState extends State<PastEventUnit> {
               flex: 4,
               child: GestureDetector(
                 onTap: _handleEventClick,
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'John\'s Predrinks',
-                          style: TextStyle(
+                          widget.event.eventName,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 12),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 7, right: 7),
-                          child: Text(
-                            'Kong Afterwards',
-                            style: TextStyle(fontSize: 11),
-                          ),
-                        )
+                        // Padding(
+                        //   padding: EdgeInsets.only(left: 7, right: 7),
+                        //   child: Text(
+                        //     'Kong Afterwards',
+                        //     style: TextStyle(fontSize: 11),
+                        //   ),
+                        // )
                       ],
                     ),
                     Text(
-                      '7:30PM to 10:30PM',
-                      style: TextStyle(fontSize: 10),
+                      widget.event.startTime.toString(),
+                      style: const TextStyle(fontSize: 10),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Description',
                           style: TextStyle(
                               fontSize: 10, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Hi guys, I\'m having a predrinks for my 19th birthday. I\'ll see you all there!',
-                          style: TextStyle(fontSize: 10),
-                          
+                          widget.event.eventDescription,
+                          style: const TextStyle(fontSize: 10),
                         )
                       ],
                     )

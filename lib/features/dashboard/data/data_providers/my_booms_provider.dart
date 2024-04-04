@@ -11,7 +11,7 @@ class MyBoomsProvider {
     // return response.data;
 
     //Simulate network latency
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
     return File(
             '/Users/matteobuxman/Desktop/Code/app-development/sandbox/lib/features/dashboard/data/data_providers/mock_dashboard_grid.json')

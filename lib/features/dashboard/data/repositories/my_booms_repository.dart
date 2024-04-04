@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:sandbox/features/dashboard/data/data_providers/my_booms_provider.dart';
-import 'package:sandbox/features/dashboard/data/errors/boom_list_fetch_exception.dart';
+import 'package:sandbox/features/dashboard/data/exceptions/boom_list_fetch_exception.dart';
 import 'package:sandbox/features/feed/data/models/boom.dart';
 
 class MyBoomsRepository {
@@ -20,7 +20,7 @@ class MyBoomsRepository {
       //Check to see the status of the request. A errorCode of 0 is nominal.
       if (parsedJson['errorCode'] as int != 0) {
         throw BoomListFetchException(
-            "There was error with our backend services",
+            "There was an error with our backend services",
             errorCode: parsedJson['errorCode'] as int);
       }
 
@@ -33,9 +33,10 @@ class MyBoomsRepository {
       }
 
       return returnArr;
-
+    } on BoomListFetchException {
+      rethrow;
     } catch (e) {
-      throw BoomListFetchException(e.toString());
+      throw BoomListFetchException(e.runtimeType.toString());
     }
   }
 }

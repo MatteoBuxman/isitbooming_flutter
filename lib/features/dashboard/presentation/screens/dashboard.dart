@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sandbox/features/dashboard/business_logic/dashboard_boom_grid.dart';
+import 'package:sandbox/features/dashboard/business_logic/dashboard_boom_grid_cubit.dart';
+import 'package:sandbox/features/dashboard/business_logic/event_list_cubit.dart';
 import 'package:sandbox/features/dashboard/presentation/widgets/booms/my_booms_tab.dart';
 import 'package:sandbox/features/dashboard/presentation/widgets/events/my_events_tab.dart';
 import 'package:sandbox/features/dashboard/presentation/widgets/locations/my_location_tab.dart';
@@ -16,7 +17,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   //The cubit for the user's boom grid
-  final _userBoomGrid = DashboardBoomGridCubit();
+  final _userBoomCubit = DashboardBoomGridCubit();
+  final _userEventCubit = EventListCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +160,8 @@ class _DashboardState extends State<Dashboard> {
               Expanded(
                   child: TabBarView(children: [
                 //I use .value because the default BlocProvider destroys itself whenever all listeners are destroyed, this is an issue in the tab system where the Booms Tab component lives. I rather choose to only destroy it when the user navigates away from the dashboard page.
-                BlocProvider.value(value: _userBoomGrid, child: MyBoomsTab()),
-                MyEventsTab(),
+                BlocProvider.value(value: _userBoomCubit, child: MyBoomsTab()),
+                BlocProvider.value(value: _userEventCubit, child: MyEventsTab(),),
                 MyLocationsTab()
               ]))
             ],
@@ -171,7 +173,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void dispose() {
-    _userBoomGrid.close();
+    _userBoomCubit.close();
+    _userEventCubit.close();
     super.dispose();
   }
 }

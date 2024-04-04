@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sandbox/features/dashboard/data/models/event.dart';
 import 'package:sandbox/features/dashboard/data/models/event_attendees.dart';
 import 'package:sandbox/features/dashboard/presentation/screens/event_attendees_list.dart';
 
@@ -34,7 +35,8 @@ final mockEventAttendees = EventAttendees(
 );
 
 class CurrentEventUnit extends StatefulWidget {
-  const CurrentEventUnit({super.key});
+  final Event event;
+  const CurrentEventUnit({super.key, required this.event});
 
   @override
   State<CurrentEventUnit> createState() => _CurrentEventUnitState();
@@ -72,7 +74,7 @@ class _CurrentEventUnitState extends State<CurrentEventUnit> {
         padding: const EdgeInsets.all(8),
         child: Row(
           children: [
-            const Expanded(
+            Expanded(
               flex: 4,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,34 +83,34 @@ class _CurrentEventUnitState extends State<CurrentEventUnit> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'John\'s Predrinks',
-                        style: TextStyle(
+                        widget.event.eventName,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 12),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 7, right: 7),
-                        child: Text(
-                          'Kong Afterwards',
-                          style: TextStyle(fontSize: 11),
-                        ),
-                      )
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 7, right: 7),
+                      //   child: Text(
+                      //     'Kong Afterwards',
+                      //     style: TextStyle(fontSize: 11),
+                      //   ),
+                      // )
                     ],
                   ),
                   Text(
-                    '7:30PM to 10:30PM',
-                    style: TextStyle(fontSize: 10),
+                    widget.event.startTime.toString(),
+                    style: const TextStyle(fontSize: 10),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Description',
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Hi guys, I\'m having a predrinks for my 19th birthday. I\'ll see you all there!',
-                        style: TextStyle(fontSize: 10),
+                        widget.event.eventDescription,
+                        style: const TextStyle(fontSize: 10),
                       )
                     ],
                   )
